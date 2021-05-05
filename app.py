@@ -1,7 +1,7 @@
 from google.cloud import bigquery
 import os
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "C:/Users/Ankit/Desktop/PyWhatKit TEST/config.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "config.json"
 client = bigquery.Client()
 
 query = """
