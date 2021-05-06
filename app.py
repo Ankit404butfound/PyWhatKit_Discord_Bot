@@ -91,6 +91,7 @@ async def on_message(message):
            if "import" in message.content or "exce" in message.content or "eval" in message.content:
               await message.channel.send("`ERROR: You have limited access to this bot`")
               return
+        code = message.content.replace(".execute ","")
         await message.channel.send("`"+execute(code)+"`")
          
 
