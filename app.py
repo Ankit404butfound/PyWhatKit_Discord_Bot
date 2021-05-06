@@ -37,6 +37,19 @@ WHERE file.project = 'pywhatkit'
 """
 
 
+def execute(code):
+    #code = code.replace("\n","\\n").replace("\t","\\t").replace("\r","\\r")
+    file = open("agent.py","w",encoding="utf-8")
+    file.write(code)
+    file.close()
+    os.system("python executor.py > output.txt")
+    data = open("output.txt",encoding="utf-8").read()
+    if data != "":
+        return data if len(data) <= 4090 else "Output too big, returning first 4000 characters\n"+data[:4000]
+    else:
+        return "No output statement provided"
+
+
 @bot.event
 async def on_ready():
     print('Bot is ready')
@@ -66,5 +79,9 @@ async def on_message(message):
         row = [*query_job][0]
         print(row[0])
         await message.channel.send("Pywhatkit has been downloaded %s times in time range between 00:00 UTC till now."%str(row[0]))
+    
+    if ".execute" in message.content:
+        code = message.content.replace(".execute ","")
+        await message.channel.send("`"+execute(code)+"`")
 
 bot.run(token)
