@@ -8,6 +8,11 @@ token = "ODMwNjUzMzkyOTM3NTQ5ODQ0.YHJ0QQ.gNUV1VRjm4Fau7WAVshKtvvhyRc"
 bot = commands.Bot(command_prefix = "")
 
 
+file = open("config.json","w")
+file.write(os.environ.get("CONFIG_JSON"))
+file.close()
+
+
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "config.json"
 client = bigquery.Client()
 
