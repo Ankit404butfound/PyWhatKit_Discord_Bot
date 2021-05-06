@@ -84,8 +84,8 @@ async def on_message(message):
         mod = False
         roles = message.author.roles
         for role in roles:
-        if role.name == 'Mod Level 1':
-            mod = True
+           if role.name == 'Mod Level 1':
+               mod = True
         
         if not mod:
            if "import" in message.content or "exce" in message.content or "eval" in message.content:
