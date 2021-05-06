@@ -81,8 +81,17 @@ async def on_message(message):
         await message.channel.send("Pywhatkit has been downloaded %s times in time range between 00:00 UTC till now."%str(row[0]))
     
     if ".execute" in message.content:
-        code = message.content.replace(".execute ","")
-        await message.channel.send("Command temporarily disabled")
-        #await message.channel.send("`"+execute(code)+"`")
+        mod = False
+        roles = message.author.roles
+        for role in roles:
+        if role.name == 'Mod Level 1':
+            mod = True
+        
+        if not mod:
+           if "import" in message.content or "exce" in message.content or "eval" in message.content:
+              await message.channel.send("`ERROR: You have limited access to this bot`")
+              return
+        await message.channel.send("`"+execute(code)+"`")
+         
 
 bot.run(token)
