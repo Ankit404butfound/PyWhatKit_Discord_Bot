@@ -2,6 +2,7 @@ from google.cloud import bigquery
 import os
 import discord
 from discord.ext import commands
+import asyncio
 
 token = "ODMwNjUzMzkyOTM3NTQ5ODQ0.YHJ0QQ.gNUV1VRjm4Fau7WAVshKtvvhyRc"
 bot = commands.Bot(command_prefix = "")
@@ -20,10 +21,29 @@ WHERE file.project = 'pywhatkit'
     AND CURRENT_DATE()
 """
 
+query_1 = """
+   SELECT count(*) as Downloads
+FROM `bigquery-public-data.pypi.file_downloads`
+WHERE file.project = 'pywhatkit'
+  -- Only query the last 30 days of history
+  AND DATE(timestamp)
+    BETWEEN DATE_SUB(CURRENT_DATE(), INTERVAL 1 DAY)
+    AND CURRENT_DATE()
+"""
+
 
 @bot.event
 async def on_ready():
     print('Bot is ready')
+    asyncio.gather(send_count())
+
+
+async def send_count():
+    while True:
+        channel = bot.get_channel(839422789849317406)
+        query_job = client.query(query_1)
+        await channel.send("Pywhatkit has been downloaded %s times in last 24 hours."%str([*query_job][0][0]))
+        await asyncio.sleep(10)
 
 
 @bot.event
