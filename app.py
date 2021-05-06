@@ -82,6 +82,7 @@ async def on_message(message):
     
     if ".execute" in message.content:
         code = message.content.replace(".execute ","")
-        await message.channel.send("`"+execute(code)+"`")
+        await message.channel.send("Command temporarily disabled")
+        #await message.channel.send("`"+execute(code)+"`")
 
 bot.run(token)
