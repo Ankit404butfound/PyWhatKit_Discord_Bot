@@ -5,7 +5,10 @@ from discord.ext import commands
 import asyncio
 
 token = "ODMwNjUzMzkyOTM3NTQ5ODQ0.YHJ0QQ.gNUV1VRjm4Fau7WAVshKtvvhyRc"
-bot = commands.Bot(command_prefix = "")
+intents = discord.Intents.all()
+#intents.members = True
+
+bot = discord.Client(intents=intents)
 
 
 file = open("config.json","w")
@@ -50,6 +53,12 @@ def execute(code):
         return "No output statement provided"
 
 
+@bot.event
+async def on_member_join(member):
+    await member.guild.system_channel.send(f"""Hello {member.mention} and welcome abroad.
+Please head over to <#830319507360186389> and consider introducing yourself.""")
+   
+   
 @bot.event
 async def on_ready():
     print('Bot is ready')
