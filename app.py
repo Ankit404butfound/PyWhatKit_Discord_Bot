@@ -4,7 +4,7 @@ import discord
 from discord.ext import commands
 import asyncio
 
-token = "ODMwNjUzMzkyOTM3NTQ5ODQ0.YHJ0QQ.gNUV1VRjm4Fau7WAVshKtvvhyRc"
+token = os.environ["TOKEN"]
 intents = discord.Intents.all()
 #intents.members = True
 
