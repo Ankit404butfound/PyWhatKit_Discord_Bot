@@ -15,7 +15,7 @@ file.write(os.environ.get("CONFIG_JSON"))
 file.close()
 
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "config.txt"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "config.json"
 client = bigquery.Client()
 
 query = """
