@@ -55,7 +55,8 @@ def execute(code):
 
 @bot.event
 async def on_member_join(member):
-    await member.guild.system_channel.send(f"""Hello {member.mention} and welcome abroad.
+    await member.guild.system_channel.send(f"""Hello {member.mention} and Thanks for joining PyWhatKit's server.
+Be sure to follow the <#830332694231384074> of this server.
 Please head over to <#830319507360186389> and consider introducing yourself.""")
    
    
