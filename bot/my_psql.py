@@ -15,7 +15,7 @@ def execute_sql(query):
         data = cur.fetchall()
         if data == []:
             conn.commit()
-        return data if data else "OK"
+        return str(data) if data else "OK"
 
     except Exception as e:
         return str(e)
