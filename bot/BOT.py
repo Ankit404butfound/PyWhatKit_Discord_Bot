@@ -77,8 +77,8 @@ Please head over to <#830319507360186389> and consider introducing yourself.""")
             if mod:
                 tasks = ""
                 dbs = fetch_todo(message.author.id)
-                for i in range(len(dbs)):
-                    tasks = f"{tasks}{str(i)}. {dbs[i]}\n"
+                for task in dbs:
+                    tasks = f"{tasks}{task[0]}. {task[1]}\n"
                 await message.channel.send(f"`{tasks}`") if tasks != "" else message.channel.send(f"`You have no pending tasks`")
             
     def start(self):
