@@ -47,20 +47,6 @@ Please head over to <#830319507360186389> and consider introducing yourself.""")
             row = [*query_job][0]
             print(row[0])
             await message.channel.send("Pywhatkit has been downloaded %s times in time range between 00:00 UTC till now."%str(row[0]))
-        
-        if ".execute" in message.content:
-            mod = False
-            roles = message.author.roles
-            for role in roles:
-               if role.name in allowed_roles:
-                   mod = True
-            
-            if not mod:
-               if "import" in message.content or "exce" in message.content or "eval" in message.content:
-                  await message.channel.send("`ERROR: You have limited access to this bot`")
-                  return
-            code = message.content.replace(".execute ","")
-            await message.channel.send("`"+execute(code)+"`")
 
         if ".pgrsql" in message.content:
             sql = message.content.replace(".pgrsql ","")
