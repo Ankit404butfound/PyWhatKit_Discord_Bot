@@ -17,7 +17,7 @@ file.write(os.environ.get("CONFIG_JSON"))
 file.close()
 
 
-allwoed_roles = ["Mod Level 1"]
+allowed_roles = ["Mod Level 1"]
 
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "config.json"
