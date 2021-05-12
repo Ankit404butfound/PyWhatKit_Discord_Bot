@@ -79,7 +79,7 @@ Please head over to <#830319507360186389> and consider introducing yourself.""")
                 dbs = fetch_todo(message.author.id)
                 for task in dbs:
                     tasks = f"Task_id{tasks}{task[0]}. {task[1]}\n"
-                await message.channel.send(f"`Here is the list of your pending tasks\n{tasks}`") if tasks != "" else message.channel.send(f"`You have no pending tasks`")
+                await message.channel.send(f"`Here's the list of your pending tasks\n{tasks}`") if tasks != "" else message.channel.send(f"`You have no pending tasks`")
             
     def start(self):
         self.bot.run(token)
