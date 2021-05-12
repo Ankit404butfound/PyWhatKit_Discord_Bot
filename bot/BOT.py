@@ -59,7 +59,7 @@ Please head over to <#830319507360186389> and consider introducing yourself.""")
             else:
                 await message.channel.send("`ERROR: You have limited access to this bot`")
 
-        if "#todo" in message.content:
+        if "#add_todo" in message.content:
             roles = message.author.roles
             task = message.content.replace("#todo ","")
             for role in roles:
