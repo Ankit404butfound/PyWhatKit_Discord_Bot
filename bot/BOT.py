@@ -79,7 +79,10 @@ Please head over to <#830319507360186389> and consider introducing yourself.""")
                 dbs = fetch_todo(message.author.id)
                 for task in dbs:
                     tasks = f"{tasks}Task_id_{task[0]}. {task[1]}\n"
-                await message.channel.send(f"`Here's the list of your pending tasks\n{tasks}`") if tasks != "" else message.channel.send(f"`You have no pending tasks`")
+                    
+                if tasks != "":
+                    await message.channel.send(f"`Here's the list of your pending tasks\n{tasks}`")
+                else message.channel.send(f"`You have no pending tasks`")
 
         if "#todo_done" in message.content:
             roles = message.author.roles
