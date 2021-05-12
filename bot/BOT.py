@@ -68,5 +68,18 @@ Please head over to <#830319507360186389> and consider introducing yourself.""")
             if mod:
                 await message.channel.send(f"`{add_todo(message.author.id, task)}`")
 
+        if "#what_todo" in message.content:
+            roles = message.author.roles
+            for role in roles:
+               if role.name in allowed_roles:
+                   mod = True
+
+            if mod:
+                tasks = ""
+                dbs = fetch_todo(message.author.id)
+                for task in range(dbs):
+                    tasks = f"{tasks}{str(i)}. {dbs[i]}\n"
+                await message.channel.send(f"`{tasks}`") if tasks != "" else message.channel.send(f"`You have no pending tasks`")
+            
     def start(self):
         self.bot.run(token)
