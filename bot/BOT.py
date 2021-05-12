@@ -4,7 +4,7 @@ from discord.ext import commands
 from constants import *
 from download_notifier import send_count
 from code_executor import execute
-from my_psql import execute_sql
+from my_psql import execute_sql, fetch_todo, add_todo
 
 import asyncio
 
@@ -59,6 +59,14 @@ Please head over to <#830319507360186389> and consider introducing yourself.""")
             else:
                 await message.channel.send("`ERROR: You have limited access to this bot`")
 
+        if "#todo" in message.content:
+            roles = message.author.roles
+            task = message.content.replace("#task ","")
+            for role in roles:
+               if role.name in allowed_roles:
+                   mod = True
+            if mod:
+                message.channel.send("`{add_todo(message.author.id, task)}`")
 
     def start(self):
         self.bot.run(token)
