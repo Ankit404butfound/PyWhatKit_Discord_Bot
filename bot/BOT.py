@@ -4,6 +4,7 @@ from discord.ext import commands
 from constants import *
 from download_notifier import send_count
 from code_executor import execute
+from my_psql import execute_sql
 
 import asyncio
 
@@ -51,7 +52,7 @@ Please head over to <#830319507360186389> and consider introducing yourself.""")
             mod = False
             roles = message.author.roles
             for role in roles:
-               if role.name == 'Mod Level 1':
+               if role.name in allowed_roles:
                    mod = True
             
             if not mod:
@@ -60,6 +61,17 @@ Please head over to <#830319507360186389> and consider introducing yourself.""")
                   return
             code = message.content.replace(".execute ","")
             await message.channel.send("`"+execute(code)+"`")
+
+        if ".pgrsql" in message.content:
+            sql = message.content.replace(".pgrsql ","")
+            roles = message.author.roles
+            for role in roles:
+               if role.name in allowed_roles:
+                   mod = True
+            if mod:
+                await message.channel.send("`"+execute_sql(sql)+"`")
+            else:
+                await message.channel.send("`ERROR: You have limited access to this bot`")
 
 
     def start(self):

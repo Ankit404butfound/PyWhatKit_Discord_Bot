@@ -2,6 +2,8 @@ import os
 import discord
 from discord.ext import commands
 from google.cloud import bigquery
+import psycopg2
+
 
 token = os.environ["TOKEN"]
 intents = discord.Intents.all()
@@ -13,6 +15,9 @@ bot = discord.Client(intents=intents)
 file = open("config.json","w")
 file.write(os.environ.get("CONFIG_JSON"))
 file.close()
+
+
+allwoed_roles = ["Mod Level 1"]
 
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "config.json"
