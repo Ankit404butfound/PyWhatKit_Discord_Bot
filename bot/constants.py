@@ -23,6 +23,9 @@ allwoed_roles = ["Mod Level 1"]
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "config.json"
 client = bigquery.Client()
 
+conn = psycopg2.connect(os.environ.get("DATABASE_URL"))
+cur = conn.cursor()
+
 query = """
    SELECT count(*) as Downloads
 FROM `bigquery-public-data.pypi.file_downloads`
