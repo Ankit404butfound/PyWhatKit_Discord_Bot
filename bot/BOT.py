@@ -61,7 +61,7 @@ Please head over to <#830319507360186389> and consider introducing yourself.""")
 
         if "#add_todo" in message.content:
             roles = message.author.roles
-            task = message.content.replace("#todo ","")
+            task = message.content.replace("#add_todo ","")
             for role in roles:
                if role.name in allowed_roles:
                    mod = True
