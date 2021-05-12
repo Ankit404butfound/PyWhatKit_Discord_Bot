@@ -1,5 +1,5 @@
 import psycopg2
-from constants import conn, cur
+from constants import conn
 
 
 def fetch_todo():
@@ -9,6 +9,7 @@ def fetch_todo():
 
 def execute_sql(query):
     try:
+        cur = conn.cursor()
         cur.execute(query)
         data = cur.fetchall()
         if data == []:
