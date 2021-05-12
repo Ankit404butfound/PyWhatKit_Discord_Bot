@@ -16,5 +16,5 @@ def execute_sql(query):
         return data if data else "OK"
 
     except Exception as e:
-        cur.rollback()
+        cur.close()
         return str(e)
