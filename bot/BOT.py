@@ -83,7 +83,7 @@ Please head over to <#830319507360186389> and consider introducing yourself.""")
                 if tasks != "":
                     await message.channel.send(f"`Here's the list of your pending tasks\n{tasks}`")
                 else:
-                    message.channel.send(f"`You have no pending tasks`")
+                    await message.channel.send(f"`You have no pending tasks`")
 
         if "#todo_done" in message.content:
             roles = message.author.roles
