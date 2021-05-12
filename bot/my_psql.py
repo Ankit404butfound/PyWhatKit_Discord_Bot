@@ -15,6 +15,15 @@ def add_todo(user_id, task):
     return "OK"
 
 
+def todo_done(task_id):
+    try:
+        cur.execute(f"UPDATE todo set status='d' WHERE task_id='{task_id}' and status='p'")
+        conn.commit()
+        return True
+    except:
+        return False
+
+
 def execute_sql(query):
     try:
         cur.execute(query)
