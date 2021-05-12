@@ -1,5 +1,7 @@
 import psycopg2
-from constants import conn
+from constants import conn, cur
+
+conn.set_isolation_level(0)
 
 
 def fetch_todo():
@@ -9,14 +11,11 @@ def fetch_todo():
 
 def execute_sql(query):
     try:
-        cur = conn.cursor()
         cur.execute(query)
         data = cur.fetchall()
         if data == []:
             conn.commit()
-        cur.close()
         return data if data else "OK"
 
     except Exception as e:
-        cur.close()
         return str(e)
