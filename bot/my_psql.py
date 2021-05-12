@@ -9,7 +9,7 @@ def fetch_todo():
 
 def execute_sql(query):
     try:
-        cur.execute()
+        cur.execute(query)
         data = cur.fetchall()
         if data == []:
             conn.commit()
