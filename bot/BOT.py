@@ -66,7 +66,7 @@ Please head over to <#830319507360186389> and consider introducing yourself.""")
                if role.name in allowed_roles:
                    mod = True
             if mod:
-                await message.channel.send("`{add_todo(message.author.id, task)}`")
+                await message.channel.send(f"`{add_todo(message.author.id, task)}`")
 
     def start(self):
         self.bot.run(token)
