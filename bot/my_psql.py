@@ -4,11 +4,11 @@ from constants import conn, cur
 conn.set_isolation_level(0)
 
 
-def fetch_todo(user_id, task_id):
+def fetch_todo(user_id, task_id=None):
     if task_id:
-        cur.execute(f"SELECT * FROM todo WHERE task_id='{task_id}'")
+        cur.execute(f"SELECT task FROM todo WHERE task_id='{task_id}'")
     else:
-        cur.execute(f"SELECT * FROM todo WHERE status='p' AND user_id='{user_id}'")
+        cur.execute(f"SELECT task FROM todo WHERE status='p' AND user_id='{user_id}'")
     return cur.fetchall()
 
 
