@@ -108,6 +108,7 @@ Please head over to <#830319507360186389> and consider introducing yourself.""")
                     user_id = message.author.id
                 log_message = ""
                 user_log = log(user_id)
+                print(user_log)
                 
                 for data in user_log:
                     if data[2] == "p":
