@@ -120,7 +120,7 @@ Please head over to <#830319507360186389> and consider introducing yourself.""")
                 if log_message != "":
                     await message.channel.send(f"`Here's the task log of the user `<@!{user_id}>\n`{log_message}`")
                 else:
-                    await message.channel.send(f"`User <#user_id> have no pending tasks`")
+                    await message.channel.send(f"`User `<#user_id>` has no pending tasks`")
 
             
     def start(self):
