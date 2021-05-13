@@ -25,7 +25,7 @@ def todo_done(task_id):
 
 
 def log(user_id):
-    cur.execute(f"SELECT task_id, task, status task FROM todo WHERE user_id='{user_id}'")
+    cur.execute(f"SELECT task_id, task, status FROM todo WHERE user_id='{user_id}'")
     return cur.fetchall()
 
 
