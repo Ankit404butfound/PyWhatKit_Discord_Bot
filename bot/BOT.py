@@ -107,9 +107,9 @@ Please head over to <#830319507360186389> and consider introducing yourself.""")
                 if user_id == "":
                     user_id = message.author.id
                 log_message = ""
-                log = log(user_id)
+                user_log = log(user_id)
                 
-                for data in log:
+                for data in user_log:
                     if data[2] == "p":
                         status = "Pending"
                     else:
