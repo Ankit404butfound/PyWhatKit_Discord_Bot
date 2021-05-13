@@ -55,7 +55,7 @@
                 "sha256:f705e12750171c0ab4ef2a3c76b9a4024a62c4103e3a55dd6f99265b9bc6fcfc",
                 "sha256:f881853d2643a29e643609da57b96d5f9c9b93f62429dcc1cbb413c7d07f0e1a",
                 "sha256:fe60131d21b31fd1a14bd43e6bb88256f69dfc3188b3a89d736d6c71ed43ec95"
-       If you need any other help regarding CONTRIBUTING to the Bot, please join our discord server here.     ],
+       ],
             "markers": "python_version >= '3.6'",
             "version": "==3.7.4.post0"
         },
