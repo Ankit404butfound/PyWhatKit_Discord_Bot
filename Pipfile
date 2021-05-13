@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+google-cloud-bigquery = "~=2.16.0"
+"discord.py" = "~=1.7.2"
+psycopg2 = "~=2.8.6"
+
+[dev-packages]
+python-dotenv = "~=0.17.1"
+pre-commit = "~=2.12.1"
+flake8 = "~=3.9.2"
+flake8-bugbear = "~=21.4.3"
+pep8-naming = "~=0.11.1"
+
+[requires]
+python_version = "3.8"
+
+[scripts]
+lint = "pre-commit run --all-files"
+precommit = "pre-commit install"
