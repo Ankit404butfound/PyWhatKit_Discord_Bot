@@ -24,6 +24,11 @@ def todo_done(task_id):
         return False
 
 
+def log(user_id):
+    cur.execute(f"SELECT task_id, task, status task FROM todo WHERE user_id='{user_id}'")
+    return cur.fetchall()
+
+
 def execute_sql(query):
     try:
         cur.execute(query)

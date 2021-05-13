@@ -4,7 +4,7 @@ from discord.ext import commands
 from constants import *
 from download_notifier import send_count
 from code_executor import execute
-from my_psql import execute_sql, fetch_todo, add_todo, todo_done
+from my_psql import *
 
 import asyncio
 
@@ -96,6 +96,30 @@ Please head over to <#830319507360186389> and consider introducing yourself.""")
                     await message.channel.send(f"`Done`")
                 else:
                     await message.channel.send(f"`Task ID not found`")
+
+        if "#todo_log" in message.content:
+            roles = message.author.roles
+            user_id = message.content.replace("#todo_log ","")
+            for role in roles:
+               if role.name in allowed_roles:
+                   mod = True
+            if mod:
+                if user_id == "":
+                    user_id = message.author.id
+                log_message = ""
+                log = log(user_id)
+                
+                for data in log:
+                    if data[2] == "p":
+                        status = "Pending"
+                    else:
+                        status = "Complete"
+                    log_message = f"{log_message}Task_id_{data[0]}. {data[1]}: {status}\n"
+                if message != "":
+                    await message.channel.send(f"`Here's the task log of the user <#{user_id}>\n{log_message}`")
+                else:
+                    await message.channel.send(f"`User <#user_id> have no pending tasks`")
+
             
     def start(self):
         self.bot.run(token)
