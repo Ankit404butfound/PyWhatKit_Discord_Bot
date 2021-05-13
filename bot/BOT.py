@@ -99,7 +99,7 @@ Please head over to <#830319507360186389> and consider introducing yourself.""")
 
         if "#todo_log" in message.content:
             roles = message.author.roles
-            user_id = message.content.replace("#todo_log ","")
+            user_id = message.content.replace("#todo_log","").strip()
             for role in roles:
                if role.name in allowed_roles:
                    mod = True
