@@ -28,6 +28,7 @@
 *Please make sure that your code follows the PEP8 standards and that you provide proper type hinting for the functions and parameters.*
 *Before committing your changes to the repository, run `pipenv run lint`.*
 *This will highlight all the errors that it found so that you can fix them.*
+*After fixing all the errors, commit your changes and then open a PR.*
 
 
 ## **Setting up the Environment:** 💻
