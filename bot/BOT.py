@@ -1,39 +1,33 @@
-import asyncio
 import discord
-from discord.ext import commands
 from constants import *
 from download_notifier import send_count
-from code_executor import execute
 from my_psql import execute_sql, fetch_todo, add_todo, todo_done
 
 import asyncio
+
 
 class Bot:
     def __init__(self):
         self.client = client
         self.bot = bot
-        
 
-
-    def download_notifier():
+    @staticmethod
+    def download_notifier() -> None:
         send_count()
-        
 
     @bot.event
-    async def on_member_join(member):
+    async def on_member_join(member: discord.Member) -> None:
         await member.guild.system_channel.send(f"""Hello {member.mention} and Thanks for joining PyWhatKit's server.
 Be sure to follow the <#830332694231384074> of this server.
 Please head over to <#830319507360186389> and consider introducing yourself.""")
-       
-       
+
     @bot.event
-    async def on_ready():
+    async def on_ready() -> None:
         print('Bot is ready')
         asyncio.gather(send_count())
 
-
     @bot.event
-    async def on_message(message):
+    async def on_message(message: discord.Message) -> None:
         print(message.content)
         if message.author == bot.user:
             return
@@ -46,40 +40,41 @@ Please head over to <#830319507360186389> and consider introducing yourself.""")
             print("The query data:")
             row = [*query_job][0]
             print(row[0])
-            await message.channel.send("Pywhatkit has been downloaded %s times in time range between 00:00 UTC till now."%str(row[0]))
+            await message.channel.send(
+                "Pywhatkit has been downloaded %s times in time range between 00:00 UTC till now." % str(row[0]))
 
         if ".pgrsql" in message.content:
-            sql = message.content.replace(".pgrsql ","")
+            sql = message.content.replace(".pgrsql ", "")
             roles = message.author.roles
             for role in roles:
-               if role.name in allowed_roles:
-                   mod = True
+                if role.name in allowed_roles:
+                    mod = True
             if mod:
-                await message.channel.send("`"+execute_sql(sql)+"`")
+                await message.channel.send("`" + execute_sql(sql) + "`")
             else:
                 await message.channel.send("`ERROR: You have limited access to this bot`")
 
         if "#add_todo" in message.content:
             roles = message.author.roles
-            task = message.content.replace("#add_todo ","")
+            task = message.content.replace("#add_todo ", "")
             for role in roles:
-               if role.name in allowed_roles:
-                   mod = True
+                if role.name in allowed_roles:
+                    mod = True
             if mod:
                 await message.channel.send(f"`{add_todo(message.author.id, task)}`")
 
         if "#what_todo" in message.content:
             roles = message.author.roles
             for role in roles:
-               if role.name in allowed_roles:
-                   mod = True
+                if role.name in allowed_roles:
+                    mod = True
 
             if mod:
                 tasks = ""
                 dbs = fetch_todo(message.author.id)
                 for task in dbs:
                     tasks = f"{tasks}Task_id_{task[0]}. {task[1]}\n"
-                    
+
                 if tasks != "":
                     await message.channel.send(f"`Here's the list of your pending tasks\n{tasks}`")
                 else:
@@ -87,15 +82,15 @@ Please head over to <#830319507360186389> and consider introducing yourself.""")
 
         if "#todo_done" in message.content:
             roles = message.author.roles
-            task_id = message.content.replace("#todo_done ","")
+            task_id = message.content.replace("#todo_done ", "")
             for role in roles:
-               if role.name in allowed_roles:
-                   mod = True
+                if role.name in allowed_roles:
+                    mod = True
             if mod:
                 if todo_done(task_id):
                     await message.channel.send(f"`Done`")
                 else:
                     await message.channel.send(f"`Task ID not found`")
-            
+
     def start(self):
         self.bot.run(token)
