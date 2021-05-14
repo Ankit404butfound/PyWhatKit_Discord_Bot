@@ -11,7 +11,6 @@ class Bot:
         self.client = client
         self.bot = bot
 
-    @staticmethod
     def download_notifier() -> None:
         send_count()
 
