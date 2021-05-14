@@ -5,7 +5,6 @@ import requests
 from bs4 import BeautifulSoup as bs4
 from constants import *
 from download_notifier import send_count
-from code_executor import execute
 from my_psql import *
 
 import asyncio
