@@ -13,7 +13,7 @@ file = open("config.json", "w")
 file.write(os.environ.get("CONFIG_JSON"))
 file.close()
 
-allowed_roles = ["Mod Level 1"]
+allowed_roles = ["Mod Level 1", "Contributors"]
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "config.json"
 client = bigquery.Client()
