@@ -7,6 +7,8 @@ name = "pypi"
 google-cloud-bigquery = "~=2.16.0"
 "discord.py" = "~=1.7.2"
 psycopg2 = "~=2.8.6"
+requests = "~=2.25.1"
+bs4 = "~0.0.1"
 
 [dev-packages]
 python-dotenv = "~=0.17.1"
