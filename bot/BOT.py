@@ -131,7 +131,7 @@ Please head over to <#830319507360186389> and consider introducing yourself.""")
          # print((fact.text))
                 await message.channel.send(fact.text)
             except Exception as e:
-                await message.channel.send('Some error occurred')
+                await message.channel.send(str(e))
             
     def start(self):
         self.bot.run(token)
