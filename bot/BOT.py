@@ -1,6 +1,8 @@
 import asyncio
 import discord
 from discord.ext import commands
+import requests
+from bs4 import BeautifulSoup as bs4
 from constants import *
 from download_notifier import send_count
 from code_executor import execute
