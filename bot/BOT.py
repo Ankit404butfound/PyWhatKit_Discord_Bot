@@ -121,7 +121,15 @@ Please head over to <#830319507360186389> and consider introducing yourself.""")
                     await message.channel.send(f"`Here's the task log of the user `<@!{user_id}>\n`{log_message}`")
                 else:
                     await message.channel.send(f"`User `<@!{user_id}>` has no pending tasks`")
-
+        if ".fact" == message.content:
+            try:
+            data = requests.get("https://www.generatormix.com/random-facts-generator").content
+            soup = bs4(data)
+            fact = soup.find("blockquote",attrs = {'class':"text-left"})
+     # print((fact.text))
+            await message.channel.send(fact.text)
+        except Exception as e:
+            await message.channel.send('Some error occurred')
             
     def start(self):
         self.bot.run(token)
