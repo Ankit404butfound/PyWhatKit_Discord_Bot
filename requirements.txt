@@ -2,4 +2,4 @@ google-cloud-bigquery
 discord.py
 psycopg2
 requests
-bs4
+BeautifulSoup4
