@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup as bs4
 from constants import *
 from download_notifier import send_count
 from my_psql import *
+from language_checker import *
 
 import asyncio
 
@@ -132,6 +133,8 @@ Please head over to <#830319507360186389> and consider introducing yourself.""")
                 await message.channel.send(fact.text)
             except Exception as e:
                 await message.channel.send(str(e))
+        if not in_english(message.content.split(" ")[10]):
+            message.channel.send(f"{message.author.mention} please talk in English. :sweat_smile:")
             
     def start(self):
         self.bot.run(token)
