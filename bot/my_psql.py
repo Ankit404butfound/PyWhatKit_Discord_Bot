@@ -1,7 +1,7 @@
 import psycopg2
 from constants import conn, cur
 import time
-from time_zone import IST
+from time_zones import IST
 
 conn.set_isolation_level(0)
 
