@@ -133,7 +133,14 @@ Please head over to <#830319507360186389> and consider introducing yourself.""")
                 await message.channel.send(fact.text)
             except Exception as e:
                 await message.channel.send(str(e))
-        if not in_english(message.content.split(" ")[10]):
+
+                
+        if len(message.content) > 10:
+            text = " ".join(i for i in message.content.split(" ")[10])
+        else:
+            text = message.content
+            
+        if not in_english(text):
             message.channel.send(f"{message.author.mention} please talk in English. :sweat_smile:")
             
     def start(self):
