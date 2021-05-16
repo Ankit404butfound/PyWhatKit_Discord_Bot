@@ -141,7 +141,7 @@ Please head over to <#830319507360186389> and consider introducing yourself.""")
             text = message.content
             
         if not in_english(text):
-            message.channel.send(f"{message.author.mention} please talk in English. :sweat_smile:")
+            await message.channel.send(f"{message.author.mention} please talk in English. :sweat_smile:")
             
     def start(self):
         self.bot.run(token)
