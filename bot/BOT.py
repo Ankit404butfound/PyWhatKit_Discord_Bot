@@ -135,7 +135,7 @@ Please head over to <#830319507360186389> and consider introducing yourself.""")
                 await message.channel.send(str(e))
 
                 
-        if len(message.content) > 10:
+        if len(message.content.split(" ")) > 10:
             text = " ".join(i for i in message.content.split(" ")[10])
         else:
             text = message.content
