@@ -1,5 +1,7 @@
 import psycopg2
 from constants import conn, cur
+import time
+from time_zone import IST
 
 conn.set_isolation_level(0)
 
@@ -10,9 +12,10 @@ def fetch_todo(user_id, task_id=None):
 
 
 def add_todo(user_id, task):
-    cur.execute(f"INSERT INTO todo (user_id, task, status) VALUES('{user_id}', '{task}', 'p')")
+    YYYY, MM, DD, HH, MI, SS = IST()
+    cur.execute(f"INSERT INTO todo (user_id, task, status, assigned_time) VALUES('{user_id}', '{task}', 'p', '{YYYY}-{MM}-{DD}-{HH}-{MI}-{SS}')")
     conn.commit()
-    return "OK"
+    return "ADDED"
 
 
 def todo_done(task_id):
@@ -25,7 +28,7 @@ def todo_done(task_id):
 
 
 def log(user_id):
-    cur.execute(f"SELECT task_id, task, status FROM todo WHERE user_id='{user_id}'")
+    cur.execute(f"SELECT task_id, task, status, assigned_time FROM todo WHERE user_id='{user_id}'")
     return cur.fetchall()
 
 

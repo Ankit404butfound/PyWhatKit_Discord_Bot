@@ -116,7 +116,7 @@ Please head over to <#830319507360186389> and consider introducing yourself.""")
                         status = "Pending"
                     else:
                         status = "Complete"
-                    log_message = f"{log_message}Task_id_{data[0]}. {data[1]}: {status}\n"
+                    log_message = f"{log_message}Task_id_{data[0]}. {data[1]}: {data[3]}: {status}\n"
                 print(log_message)
                 if log_message != "":
                     await message.channel.send(f"`Here's the task log of the user `<@!{user_id}>\n`{log_message}`")
