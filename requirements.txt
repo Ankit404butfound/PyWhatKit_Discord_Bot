@@ -3,4 +3,3 @@ discord.py
 psycopg2
 requests
 BeautifulSoup4
-pyenchant
