@@ -30,6 +30,7 @@ Please head over to <#830319507360186389> and consider introducing yourself.""")
     @bot.event
     async def on_ready():
         print('Bot is ready')
+        await bot.change_presence(activity=discord.Game(name="Name's bot, PyWhatKit bot..."))
         asyncio.gather(send_count())
 
 
