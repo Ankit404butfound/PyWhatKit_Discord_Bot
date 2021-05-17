@@ -156,12 +156,6 @@ Please head over to <#830319507360186389> and consider introducing yourself.""")
                 await message.channel.send(fact.text)
             except Exception as e:
                 await message.channel.send(str(e))
-                
-                
-        if ".ask" == message.content:
-             
-             
-            
 
                 
         if len(message.content.split(" ")) > 10:
