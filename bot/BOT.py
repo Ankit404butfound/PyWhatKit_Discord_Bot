@@ -18,17 +18,17 @@ class Bot:
      
     
     
-    def get_quote():
+    def get_quote(self):
         response = requests.get("https://zenquotes.io/api/random")
         json_data = json.loads(response.text)
         quote = json_data[0]['q'] + " -" + json_data[0]['a']
         return(quote)
 
-    def get_answer():
+    def get_answer(self):
         rando_var = random.choice(drunk_list)
         return(rando_var)
 
-    def download_notifier():
+    def download_notifier(self):
         send_count()
         
         
