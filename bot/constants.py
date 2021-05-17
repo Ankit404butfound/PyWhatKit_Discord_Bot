@@ -18,6 +18,15 @@ file.close()
 
 
 allowed_roles = ["Contributors"]
+drunk_list = ['Yes','No','Maybe','Nah','Yea','Are you serious','I dont want to hear this','What! LoL',
+                           'Am i dumb','bluh bluh','Are you mad','God!','Am i drunk','Are you drunk','I doubt','Smells nothing',
+                           'Who cares','Its mean','Cool but no','Is it true','Its hard','Going to sereach','Felt dumb','Oh! no',
+                           'blah blah','let my soul on rest']
+    
+sad_words = ["sad", "depressed", "unhappy", "angry","miserable","die","kill","crying","waste","not working"]
+
+starter_encouragements = [  "Cheer up!",  "Hang in there.",  "You are a great person / bot!", "Don’t give up","Keep pushing",
+                                "Keep fighting!","Stay strong Never give up" "Never say!", "Come on! You can do it!","Believe in yourself"]
 
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "config.json"
