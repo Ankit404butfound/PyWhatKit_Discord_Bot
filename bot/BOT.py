@@ -61,7 +61,7 @@ Please head over to <#830319507360186389> and consider introducing yourself.""")
             reply = get_answer()
             await message.channel.send(reply)
             
-        if any(word in msg for word in sad_words):
+        if any(word in message.content for word in sad_words):
             await message.channel.send(random.choice(starter_encouragements))
         
         if message.content == ".test":
