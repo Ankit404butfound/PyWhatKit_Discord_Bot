@@ -7,7 +7,7 @@ from constants import *
 from download_notifier import send_count
 from my_psql import *
 from language_checker import *
-
+import random
 import asyncio
 
 class Bot:
@@ -133,6 +133,15 @@ Please head over to <#830319507360186389> and consider introducing yourself.""")
                 await message.channel.send(fact.text)
             except Exception as e:
                 await message.channel.send(str(e))
+                
+                
+        if ".ask" == message.content:
+             drunk_list = ['Yes','No','Maybe','Nah','Yea','Are you serious','I dont want to hear this','What! LoL',
+                           'Am i dumb','bluh bluh','Are you mad','God!','Am i drunk','Are you drunk','I doubt','Smells nothing',
+                           'Who cares','Its mean','Cool but no','Is it true','Its hard','Going to sereach','Felt dumb','Oh! no',
+                           'blah blah','let my soul on rest']
+             
+            
 
                 
         if len(message.content.split(" ")) > 10:
