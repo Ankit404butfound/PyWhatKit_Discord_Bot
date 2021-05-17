@@ -54,11 +54,11 @@ Please head over to <#830319507360186389> and consider introducing yourself.""")
             return
         
         if message.content.startswith('.quote'):
-            quote = get_quote()
+            quote = self.get_quote()
             await message.channel.send(quote)
 
         if message.content.startswith('.ask'):
-            reply = get_answer()
+            reply = self.get_answer()
             await message.channel.send(reply)
             
         if any(word in message.content for word in sad_words):
