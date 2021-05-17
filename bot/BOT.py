@@ -7,18 +7,43 @@ from constants import *
 from download_notifier import send_count
 from my_psql import *
 from language_checker import *
-
+import random
 import asyncio
+import json
 
 class Bot:
     def __init__(self):
         self.client = client
         self.bot = bot
-        
+     
+    drunk_list = ['Yes','No','Maybe','Nah','Yea','Are you serious','I dont want to hear this','What! LoL',
+                           'Am i dumb','bluh bluh','Are you mad','God!','Am i drunk','Are you drunk','I doubt','Smells nothing',
+                           'Who cares','Its mean','Cool but no','Is it true','Its hard','Going to sereach','Felt dumb','Oh! no',
+                           'blah blah','let my soul on rest']
+    
+    sad_words = ["sad", "depressed", "unhappy", "angry","miserable","die","kill","crying","waste","not working"]
 
+    starter_encouragements = [  "Cheer up!",  "Hang in there.",  "You are a great person / bot!", "Don’t give up","Keep pushing",
+                                "Keep fighting!","Stay strong Never give up" "Never say!", "Come on! You can do it!","Believe in yourself"]
+    
+    def get_quote():
+       response = requests.get("https://zenquotes.io/api/random")
+       json_data = json.loads(response.text)
+       quote = json_data[0]['q'] + " -" + json_data[0]['a']
+       return(quote)
 
-    def download_notifier():
+    def get_answer():
+       rando_var = random.choice(drunk_list)
+       return(rando_var)
+
+     def download_notifier():
         send_count()
+        
+     def get_quote():
+          response = requests.get("https://zenquotes.io/api/random")
+          json_data = json.loads(response.text)
+          quote = json_data[0]['q'] + " -" + json_data[0]['a']
+          return(quote)
         
 
     @bot.event
@@ -40,7 +65,18 @@ Please head over to <#830319507360186389> and consider introducing yourself.""")
         print(message.content)
         if message.author == bot.user:
             return
+        
+        if message.content.startswith('.quote'):
+            quote = get_quote()
+            await message.channel.send(quote)
 
+        if message.content.startswith('.ask'):
+            reply = get_answer()
+            await message.channel.send(reply)
+            
+        if any(word in msg for word in sad_words):
+            await message.channel.send(random.choice(starter_encouragements))
+        
         if message.content == ".test":
             await message.channel.send("Bot is working")
 
@@ -133,6 +169,12 @@ Please head over to <#830319507360186389> and consider introducing yourself.""")
                 await message.channel.send(fact.text)
             except Exception as e:
                 await message.channel.send(str(e))
+                
+                
+        if ".ask" == message.content:
+             
+             
+            
 
                 
         if len(message.content.split(" ")) > 10:
