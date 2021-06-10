@@ -14,6 +14,7 @@
 ## **Contributing:** 📝
 
 ### *If you would like to provide a fix for a problem you can do so by opening a Pull Request [here](https://github.com/Ankit404butfound/PyWhatKit_Discord_Bot/pulls). Below are some points to consider:*
+
 <br>
 
 - *Please open a Draft PR if you want to change a lot of things.*
@@ -23,6 +24,7 @@
 - *If you want to add a new feature please open an issue first to discuss it or your changes may not get merged.*
 
 ---
+
 ## Code Formatting
 
 *Please make sure that your code follows the PEP8 standards and that you provide proper type hinting for the functions and parameters.*
@@ -30,19 +32,19 @@
 *This will highlight all the errors that it found so that you can fix them.*
 *After fixing all the errors, commit your changes and then open a PR.*
 
-
 ## **Setting up the Environment:** 💻
 
 ### *Please ensure that you have Python version 3.8*
+
 ### *This guides you through the setting up the Environment for working with the project.*
 
 <br>
 
 1. *Fork the repository.*
 2. *Clone it to your local machine to work with the Project.*
-3. *Install pipenv if you haven't using `pip3 install pipenv`.*  
-4. *Create a Virtual Environment with pipenv using `pipenv shell`.*
-5. *Install the project dependencies using `pipenv install --dev`.*  
+3. *Install virtualenv if you haven't using `pip3 install virtualenv`.*  
+4. *Create a Virtual Environment with virtualenv using `python3 -m venv venv`.*
+5. *Install the project dependencies using `pip3 install -r requirements.txt`.*  
 6. *Open the Project in the Editor of your choice.*
 7. *Congratulations, you are now ready to Contribute.* 🎉
 
