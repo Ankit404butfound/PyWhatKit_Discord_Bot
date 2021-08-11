@@ -1,0 +1,202 @@
+{
+  "ASCII Art": {
+    "topic": "ASCII Art",
+    "description": "Convert an Image to an ASCII Art form that is stored in a text file",
+    "matching": "ascii, ascii art, art",
+    "args": "img_path: str, output_file: str",
+    "returns": "str",
+    "example": {
+      "Image in Same Directory": "pywhatkit.image_to_ascii_art('Example.png')",
+      "Image in Different Directory": "pywhatkit.image_to_ascii_art('C:\\Example\\Example.png')",
+      "Change Output Filename": "pywhatkit.image_to_ascii_art('Example.png', 'filename')"
+    },
+    "link": "https://github.com/Ankit404butfound/PyWhatKit/wiki/ASCII-Art"
+  },
+  "Text to Handwriting": {
+    "topic": "Text to Handwriting",
+    "description": "Convert a string to an Image with Handwritten Characters",
+    "matching": "tth, text to handwriting, handwriting",
+    "args": "string: str, save_to: str, rgb: tuple",
+    "returns": "None",
+    "example": {
+      "Sample": "pywhatkit.text_to_handwriting('Hello')",
+      "Change Output Filename": "pywhatkit.text_to_handwriting('Hello', 'filename.png')",
+      "Change Color of Characters": "pywhatkit.text_to_handwriting('Hello', 'filename.png', (0, 0, 0))"
+    },
+    "link": "https://github.com/Ankit404butfound/PyWhatKit/wiki/Text-to-Handwriting"
+  },
+  "Shutdown": {
+    "topic": "Shutdown",
+    "description": "Shutdown the System (Works on Linux, Windows and MacOS based Distributions)",
+    "matching": "Shutdown",
+    "args": "time: int",
+    "returns": "None",
+    "example": {
+      "Sample": "pywhatkit.shutdown()",
+      "Control": "pywhatkit.shutdown(10)"
+    },
+    "link": "https://github.com/Ankit404butfound/PyWhatKit/wiki/Shutdown-and-CancelShutdown"
+  },
+  "Cancel Shutdown": {
+    "topic": "Cancel Shutdown",
+    "description": "Cancel a scheduled Shutdown (Works on Linux, Windows and MacOS based Distributions)",
+    "matching": "cancel shutdown",
+    "args": "None",
+    "returns": "None",
+    "example": {
+      "Sample": "pywhatkit.cancel_shutdown()"
+    },
+    "link": "https://github.com/Ankit404butfound/PyWhatKit/wiki/Shutdown-and-CancelShutdown"
+  },
+  "Send Mail": {
+    "topic": "Send Mail",
+    "description": "Send a Mail with Simple Text Content",
+    "matching": "mail, send mail",
+    "args": "email_sender: str, password: str, subject: str, message: Union[str, MIMEText], email_receiver: str",
+    "returns": "None",
+    "example": {
+      "Sample": "pywhatkit.send_mail('test@test.com', 'app_password', 'Test Mail', 'This is a Test Mail', 'testrecv@test.com')"
+    },
+    "link": "https://github.com/Ankit404butfound/PyWhatKit/wiki/Sending-a-Mail"
+  },
+  "Send HTML Mail": {
+    "topic": "Send HTML Mail",
+    "description": "Send a Mail with HTML Content",
+    "matching": "send hmail, html mail",
+    "args": "email_sender: str, password: str, subject: str, html_code: str, email_receiver: str",
+    "returns": "None",
+    "example": {
+      "Sample": "pywhatkit.send_hmail('test@test.com', 'app_password', 'Test Mail', '<h1>Hello</h1>', 'testrecv@test.com')"
+    },
+    "link": "https://github.com/Ankit404butfound/PyWhatKit/wiki/Sending-a-Mail"
+  },
+  "Info": {
+    "topic": "Info",
+    "description": "Get Information from Wikipedia about a Topic",
+    "matching": "info, wikipedia",
+    "args": "topic: str, lines: int, return_value: bool",
+    "returns": "Optional[str]",
+    "example": {
+      "Sample": "pywhatkit.info('Python Language', 10)",
+      "Return the Result": "pywhatkit.info('Python Language', 10, True)"
+    },
+    "link": "https://github.com/Ankit404butfound/PyWhatKit/wiki/Miscellaneous-Functions"
+  },
+  "Play on YT": {
+    "topic": "Play on YT",
+    "description": "Play a YouTube Video on a Topic",
+    "matching": "playonyt, YouTube",
+    "args": "topic: str, use_api: bool, open_video: bool",
+    "returns": "Union[str]",
+    "example": {
+      "Sample": "pywhatkit.playonyt('Python')",
+      "Use the API fo fetch the URL": "pywhatkit.playonyt('Python', True)"
+    },
+    "link": "https://github.com/Ankit404butfound/PyWhatKit/wiki/Miscellaneous-Functions"
+  },
+  "Search Google": {
+    "topic": "Search Google",
+    "description": "Search Google for a Topic and Open the Page",
+    "matching": "google, search",
+    "args": "topic: str",
+    "returns": "str",
+    "example": {
+      "Sample": "pywhatkit.search('Python Language')"
+    },
+    "link": "https://github.com/Ankit404butfound/PyWhatKit/wiki/Miscellaneous-Functions"
+  },
+  "Show History": {
+    "topic": "Show History",
+    "description": "Shows the History of the Messages sent using the Library",
+    "matching": "history",
+    "args": "None",
+    "returns": "None",
+    "example": {
+      "Sample": "pywhatkit.show_history()"
+    },
+    "link": "https://github.com/Ankit404butfound/PyWhatKit/wiki/Miscellaneous-Functions"
+  },
+  "Take Screenshot": {
+    "topic": "Take Screenshot",
+    "description": "Take a Screenshot (Only for MacOS and Windows Distributions)",
+    "matching": "screenshot",
+    "args": "file_name: str",
+    "returns": "None",
+    "example": {
+      "Sample": "pywhatkit.take_screenshot()",
+      "Change the Filename": "pywhatkit.take_screenshot('Screenshot')"
+    },
+    "link": "https://github.com/Ankit404butfound/PyWhatKit/wiki/Miscellaneous-Functions"
+  },
+  "Open Web": {
+    "topic": "Open Web",
+    "description": "Opens WhatsApp Web",
+    "matching": "open web",
+    "args": "None",
+    "returns": "bool",
+    "example": {
+      "Sample": "pywhatkit.open_web()"
+    },
+    "link": "https://github.com/Ankit404butfound/PyWhatKit/wiki/Miscellaneous-Functions"
+  },
+  "Close Tab": {
+    "topic": "Close Tab",
+    "description": "Used to Close the WhatsApp Web Tab after Sending the Message",
+    "matching": "close tab",
+    "args": "wait_time: int",
+    "returns": "None",
+    "example": {
+      "Sample": "pywhatkit.close_tab(4)",
+      "Sending Message": "Used in the Send Message Functions in the Library to Send the Messages"
+    },
+    "link": "https://github.com/Ankit404butfound/PyWhatKit/wiki/Miscellaneous-Functions"
+  },
+  "Send WhatsApp Message": {
+    "topic": "Send WhatsApp Message",
+    "description": "Used to Send a WhatsApp Message at a particular Time",
+    "matching": "sendwhatmsg, send message",
+    "args": "phone_no: str, message: str, time_hour: int, time_min: int, wait_time: int, tab_close: bool, close_time: int",
+    "returns": "None",
+    "example": {
+      "Sample": "pywhatkit.sendwhatmsg('+910123456789', 'Hi', 13, 12, 15)",
+      "Close the Tab after sending the Message": "pywhatkit.sendwhatmsg('+910123456789', 'Hi', 13, 12, 15, True, 5)"
+    },
+    "link": "https://github.com/Ankit404butfound/PyWhatKit/wiki/Sending-WhatsApp-Messages"
+  },
+  "Sending Message Instantly": {
+    "topic": "Sending Message Instantly",
+    "description": "Used to Send a Message Instantly",
+    "matching": "sendwhatmsg_instantly, send message instantly",
+    "args": "phone_no: str, message: str, wait_time: int, tab_close: bool, close_time: int",
+    "returns": "None",
+    "example": {
+      "Sample": "pywhatkit.sendwhatmsg_instantly('+910123456789', 'Hi', 15)",
+      "Close the Tab after Sending a Message": "pywhatkit.sendwhatmsg_instantly('+910123456789', 'Hi', 15, True, 5)"
+    },
+    "link": "https://github.com/Ankit404butfound/PyWhatKit/wiki/Sending-WhatsApp-Messages"
+  },
+  "Sending Message to a Group": {
+    "topic": "Sending Message to a Group",
+    "description": "Used to Send Message to a WhatsApp Group",
+    "matching": "sendwhatmsg_to_group, group message",
+    "args": "group_id: str, message: str, time_hour: int, time_min: int, wait_time: int, tab_close: bool, close_time: int",
+    "returns": "None",
+    "example": {
+      "Sample": "pywhatkit.sendwhatmsg_to_group('AB123CDEFGHijklmn', 'hello', 13, 12, 30)",
+      "Close the Tab after Sending the Message": "pywhatkit.sendwhatmsg_to_group('AB123CDEFGHijklmn', 'hello', 13, 12, 30, True, 5)"
+    },
+    "link": "https://github.com/Ankit404butfound/PyWhatKit/wiki/Sending-WhatsApp-Messages"
+  },
+  "Sending WhatsApp Media": {
+    "topic": "Sending WhatsApp Media",
+    "description": "Used to Send Media Content to WhatsApp Contacts",
+    "matching": "sendwhats_image, send image, send media",
+    "args": "phone_no: str, img_path: str, caption: str, wait_time: int, tab_close: bool, close_time: int",
+    "returns": "None",
+    "example": {
+      "Sample": "pywhatkit.sendwhats_image('+910123456789', 'Example.png', 'Test', 15)",
+      "Close Tab after Sending the Message": "pywhatkit.sendwhats_image('+910123456789', 'Example.png', 'Test', 15, True, 5)"
+    },
+    "link": "https://github.com/Ankit404butfound/PyWhatKit/wiki/Sending-WhatsApp-Messages"
+  }
+}
