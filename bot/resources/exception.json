@@ -17,6 +17,6 @@
   "UnsupportedEmailProvider": {
     "topic": "UnsupportedEmailProvider",
     "description": "Raised when the Email provider is not supported by the Library",
-    "fix": "Edit the mail.py file to include the domain name and the SMTP hostname for the provider in the hostnames dictionary"
+    "fix": "Edit the mail.py file to include the domain name and the SMTP hostname for the provider in the hostname dictionary"
   }
 }
