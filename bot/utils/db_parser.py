@@ -1,11 +1,11 @@
-import sqlite3 #psycopg2
+import psycopg2
 
 import os
 
 from typing import Union
 
 
-CONN = sqlite3.connect(":memory:")#psycopg2.connect(os.environ.get("DATABASE_URL"))
+CONN = psycopg2.connect(os.environ.get("DATABASE_URL"))
 CUR = CONN.cursor()
 
 MATCHING = {
