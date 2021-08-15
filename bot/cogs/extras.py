@@ -41,7 +41,7 @@ class Extras(commands.Cog):
         await ctx.send(f"{ctx.author.mention} Subscribed to <#{constants.Channels.announcements}>")
 
     @commands.command(name="unsubscribe")
-    @commands.command(1, 15, commands.BucketType.user)
+    @commands.cooldown(1, 15, commands.BucketType.user)
     async def unsubscribe(self, ctx: commands.Context) -> None:
         """
         Unsubscribe to Announcements
