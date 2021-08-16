@@ -99,7 +99,7 @@ class Docs(commands.Cog):
         """
         List the Available Searches for the !docs and !exception Commands
         """
-    
+
         if "function" in topic.lower():
             functions = "\n".join(f":rocket: {i[0]}" for i in db_parser.execute("SELECT topic FROM command"))
             embed = discord.Embed(title="Available searches", description=functions, color=discord.Color.random())
