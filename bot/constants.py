@@ -15,17 +15,17 @@ __all__ = ["Channels", "Client", "Roles"]
 class Channels(NamedTuple):
     """ID's for the channels"""
 
-    welcome = 863847136403914796
-    introduce = 863847136403914797
-    rules = 863847136403914798
-    announcements = 866324696970690561
+    welcome = 830319475387531296
+    introduce = 830319507360186389
+    rules = 830332694231384074
+    announcements = 830340707951968267
 
 
 class Client(NamedTuple):
     """Details for the Bot"""
 
     name = "PyWhatKit"
-    guild = int(os.environ.get("GUILD_ID", 863847136076103710))
+    guild = int(os.environ.get("GUILD_ID", 830315801629949954))
     prefix = os.environ.get("PREFIX", "!")
     token = os.environ.get("TOKEN")
     bot_repo = "https://github.com/Ankit404butfound/PyWhatKit_Discord_Bot"
@@ -36,12 +36,6 @@ class Client(NamedTuple):
 class Roles(NamedTuple):
     """Role ID's"""
 
-    admin = 863847136076103716
-    owner = 863847136076103717
-    mod_2 = 863847136076103715
-    mod_1 = 863847136076103714
-    helper = 863847136076103713
-    contributors = 863847136076103712
-    announcements = 866321812199440444
-    banned = 866614754416001074
-    video = 874344502658203668
+    announcements = 866624699432435712
+    banned = 866624846087979049
+    video = 866628190604623902
