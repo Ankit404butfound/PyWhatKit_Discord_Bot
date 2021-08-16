@@ -1,8 +1,7 @@
-import psycopg2
-
 import os
+from typing import Union, Any
 
-from typing import Union
+import psycopg2
 
 
 CONN = psycopg2.connect(os.environ.get("DATABASE_URL"))
@@ -12,7 +11,7 @@ MATCHING = {
     "ASCII Art":                  ("ascii", "ascii art", "art"),
     "Text to Handwriting":        ("ascii", "ascii" "art", "art"),
     "Shutdown":                   ("shutdown",),
-    "Cancel Shutdown":            ("sancel Shutdown",),
+    "Cancel Shutdown":            ("Cancel Shutdown",),
     "Send Mail":                  ("mail", "send mail"),
     "Send HTML Mail":             ("send hmail", "html mail"),
     "Info":                       ("info", "wikipedia"),
@@ -27,20 +26,15 @@ MATCHING = {
 }
 
 
-def execute(sql: str, mode: str = "r") -> Union[bool, tuple]:
-    """
-    Execute a SQL statement
-    :param sql: SQL statement
-    :param mode: 'w' or 'r'
-    :return: bool or dict
-    """
+def execute(sql: str, mode: str = "r") -> Union[bool, list[tuple[Any, ...]], None]:
+    """Execute a SQL statement"""
 
     if mode == "w":
         try:
             CUR.execute(sql)
             CONN.commit()
             return True
-        except:#psycopg2.Error as e:
+        except psycopg2.Error as e:
             CONN.rollback()
             return False
 
@@ -49,10 +43,8 @@ def execute(sql: str, mode: str = "r") -> Union[bool, tuple]:
         return CUR.fetchall()
 
 
-def match_string(string: str) -> str:
-    """
-    Match the string with the command
-    """
+def match_string(string: str) -> Union[str, None]:
+    """Match the String with the Command """
     for k, v in MATCHING.items():
         if string.lower() in v:
             return k
@@ -60,33 +52,25 @@ def match_string(string: str) -> str:
         for key in MATCHING:
             if string.lower() in key.lower():
                 return key
-        
+
     return None
 
 
 def search_for_docs(search_string: str) -> tuple:
-    """
-    Get information from DB for particular function
-    :param function: function name
-    :return: str
-    """
+    """Get Docs for a particular Function"""
 
     function = match_string(search_string)
     if function:
         function = function.strip()
         sql = f"SELECT topic, description, args, returns, link FROM command WHERE topic='{function}'"
-        data = execute(sql)#("SELECT topic, description, args, returns, link FROM command WHERE topic='Sending WhatsApp Media'")
+        data = execute(sql)
         return data[0]
     else:
         return ()
 
 
 def search_for_example(search_string: str) -> tuple:
-    """
-    Get information from DB for particular function
-    :param function: function name
-    :return: str
-    """
+    """Get the Example for a Particular"""
 
     function = match_string(search_string)
     if function:
@@ -99,11 +83,7 @@ def search_for_example(search_string: str) -> tuple:
 
 
 def search_for_exception(search_string: str) -> tuple:
-    """
-    Get exception's information from DB for particular function
-    :param function: function name
-    :return: str
-    """
+    """Get details about an Exception"""
 
     sql = f"SELECT topic, description, fix FROM exception WHERE topic='{search_string}'"
     data = execute(sql)
