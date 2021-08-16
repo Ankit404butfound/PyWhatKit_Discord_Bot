@@ -28,9 +28,9 @@ class Bot(commands.Bot):
         """Welcome message when a New Member Joins"""
 
         await self.get_channel(constants.Channels.welcome).send(
-            f"Welcome to the PyWhatKit Discord Server, {member.mention}.\n"
-            f"Please take some time to read through the server <#{constants.Channels.rules}>.\n"
-            f"Finally please be kind to everyone and enjoy your time here.")
+            f"Hello {member.mention}, thanks for joining the server\n"
+            f"Be sure to follow the <#{constants.Channels.rules}> of this server\n"
+            f"Consider introducing yourself in <#{constants.Channels.announcements}>")
 
     def add_cog(self, cog: commands.Cog) -> None:
         """Adds a Cog"""
