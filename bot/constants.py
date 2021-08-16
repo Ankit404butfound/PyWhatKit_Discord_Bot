@@ -27,7 +27,7 @@ class Client(NamedTuple):
     name = "PyWhatKit"
     guild = int(os.environ.get("GUILD_ID", 863847136076103710))
     prefix = os.environ.get("PREFIX", "!")
-    token = os.environ.get("BOT_TOKEN")
+    token = os.environ.get("TOKEN")
     bot_repo = "https://github.com/Ankit404butfound/PyWhatKit_Discord_Bot"
     wiki = "https://github.com/Ankit404butfound/PyWhatKit/wiki"
     module_repo = "https://github.com/Ankit404butfound/PyWhatKit"
