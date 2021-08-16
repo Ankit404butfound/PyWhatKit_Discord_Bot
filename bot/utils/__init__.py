@@ -1,1 +1,1 @@
-__all__ = ["extensions", "roles"]
+__all__ = ["extensions", "roles", "db_parser"]
