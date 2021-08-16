@@ -40,14 +40,13 @@ class Docs(commands.Cog):
         """
 
         data = db_parser.search_for_docs(" ".join(args))
-
         if not data:
             return await ctx.send(f"{ctx.author.mention} No Results Found!")
 
         topic, descp, argums, returs, link = data
         embed = discord.Embed(title=topic, color=discord.Color.random())
         embed.add_field(name="Description",
-                        value=f"```python\n{descp}```", inline=False)
+                        value=f"```\n{descp}```", inline=False)
         embed.add_field(name="Arguments",
                         value=f"```python\n{argums}```", inline=False)
         embed.add_field(
@@ -62,7 +61,6 @@ class Docs(commands.Cog):
         Examples for a Function
         """
         data = db_parser.search_for_example(" ".join(args))
-        print(data)
 
         if not data[0]:
             return await ctx.send(f"{ctx.author.mention} No Results Found!")
@@ -81,14 +79,13 @@ class Docs(commands.Cog):
         """
 
         data = db_parser.search_for_exception(" ".join(args))
-        print(data)
         if not data:
             return await ctx.send(f"{ctx.author.mention} No Results Found!")
 
         embed = discord.Embed(title=data[0], color=discord.Color.random())
         embed.add_field(name="Description",
-                        value=f"> {data[1]}", inline=False)
-        embed.add_field(name="Fix", value=f"> {data[2]}", inline=False)
+                        value=f"` {data[1]}`", inline=False)
+        embed.add_field(name="Fix", value=f"` {data[2]}", inline=False)
         await ctx.send(ctx.author.mention, embed=embed)
 
     @commands.command(name="list")
@@ -113,7 +110,7 @@ class Docs(commands.Cog):
             await ctx.send(ctx.author.mention, embed=embed)
 
         else:
-            return await ctx.send(f"{ctx.author.mention} Please enter a Valid Field!")
+            return await ctx.send(f"{ctx.author.mention} Please enter a Valid Value (function, exception)!")
 
 
 def setup(bot: commands.Bot) -> None:
