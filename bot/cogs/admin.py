@@ -3,6 +3,7 @@ from discord.ext import commands
 
 import constants
 from utils.roles import check_self_role, check_member_role
+from utils.db_parser import execute
 
 
 class ManageCogs(commands.Cog):
@@ -106,9 +107,14 @@ class Moderation(commands.Cog):
 
         banned = [str(x) for x in bans]
 
-        await ctx.send(embed=discord.Embed(title="Banned Users",
-                                           description=" ".join(banned),
-                                           colour=discord.Color.random()))
+        if banned:
+            await ctx.send(embed=discord.Embed(title="Banned Users",
+                                            description=" ".join(banned),
+                                            colour=discord.Color.random()))
+        else:
+            await ctx.send(embed=discord.Embed(title="Banned Users",
+                                            description="No Banned Users",
+                                            colour=discord.Color.random()))
 
     # TODO: Implement DB Storage to Store the Warnings for each User
     @commands.command(name="warn")
@@ -118,10 +124,47 @@ class Moderation(commands.Cog):
         Warn a Member for Violation of Rules
         """
 
+        member_id = member.id
+        num_of_warns = execute(f"SELECT num_of_warnings FROM flagged_user WHERE user_id={member_id}")
+        print(num_of_warns)
+        if not num_of_warns:
+            num_of_warns = 0
+        else:
+            num_of_warns = num_of_warns[0][0]
+
         message = [x for x in reason]
-        await ctx.send(embed=discord.Embed(title=f"Warning for {member.display_name}",
-                                           description=f"Warned by {ctx.author} for {' '.join(message)}",
-                                           colour=discord.Color.random()))
+        # print(num_of_warns)
+
+        if num_of_warns < 2:
+            warn_message = f"Warning for {member.display_name}"
+
+        elif num_of_warns == 2:
+            warn_message = f"Last warning for {member.display_name}"
+
+        elif num_of_warns >= 3:
+            await member.ban(reason=' '.join(message))
+            await ctx.send(embed=discord.Embed(title=f"{member.display_name} has been banned",
+                                            description=f"Warned multiple times by {ctx.author} for {' '.join(message) if message else 'unknown reason'}",
+                                            colour=discord.Color.random()))
+            execute(f"DELETE FROM flagged_user WHERE user_id={member_id}", "w")
+            return
+
+        if len(message) >= 1:
+            await ctx.send(embed=discord.Embed(title=warn_message,
+                                            description=f"Warned by {ctx.author} for {' '.join(message)}",
+                                            colour=discord.Color.random()))
+        else:
+            await ctx.send(embed=discord.Embed(title=warn_message,
+                                            description=f"Warned by {ctx.author}",
+                                            colour=discord.Color.random()))
+
+        if num_of_warns == 0:
+            if execute(f"INSERT INTO flagged_user VALUES ({member_id}, 1)", "w"):
+                print("INSERTED")
+        else:
+            execute(f"UPDATE flagged_user SET num_of_warnings={num_of_warns+1} WHERE user_id={member_id}", "w")
+
+
 
     @commands.command(name="clear")
     @commands.has_any_role("Mod Level 1")
