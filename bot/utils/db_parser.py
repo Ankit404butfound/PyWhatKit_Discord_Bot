@@ -72,7 +72,7 @@ def search_for_docs(search_string: str) -> tuple:
 
 
 def search_for_example(search_string: str) -> tuple:
-    """Get the Example for a Particular"""
+    """Get the Example for a Particular Function"""
 
     function = match_string(search_string)
     if function:
