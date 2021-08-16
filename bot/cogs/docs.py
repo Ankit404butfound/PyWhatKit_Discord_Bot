@@ -17,7 +17,7 @@ class Docs(commands.Cog):
         self.bot = bot
 
     @commands.command(name="link")
-    @commands.cooldown(1, 10, commands.BucketType.user)
+    @commands.cooldown(1, 5, commands.BucketType.user)
     async def link(self, ctx: commands.Context, name: str) -> None:
         """
         Important Links
