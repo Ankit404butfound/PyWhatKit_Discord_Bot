@@ -18,6 +18,8 @@ MATCHING = {
     "Play on YT":                 ("playonyt", "youtube", "search on yt"),
     "Search Google":              ("google", "search"),
     "Show History":               ("history",),
+    "Take Screenshot":            ("screenshot", "take screenshot"),
+    "Open Web":                   ("open web", "web"),
     "Close Tab":                  ("close tab",),
     "Send WhatsApp Message":      ("sendwhatmsg", "send message"),
     "Sending Message Instantly":  ("sendwhatmsg_instantly", "send message instantly"),
