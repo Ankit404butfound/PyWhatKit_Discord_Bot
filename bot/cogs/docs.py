@@ -84,7 +84,7 @@ class Docs(commands.Cog):
 
         embed = discord.Embed(title=data[0], color=discord.Color.random())
         embed.add_field(name="Description",
-                        value=f"` {data[1]}`", inline=False)
+                        value=f"`{data[1]}`", inline=False)
         embed.add_field(name="Fix", value=f"` {data[2]}", inline=False)
         await ctx.send(ctx.author.mention, embed=embed)
 
