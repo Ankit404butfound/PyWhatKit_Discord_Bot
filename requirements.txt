@@ -1,5 +1,0 @@
-google-cloud-bigquery
-discord.py
-psycopg2
-requests
-BeautifulSoup4

@@ -1,6 +1,6 @@
 ---
-name: Bug report
-about: Create a report to help us improve
+name: Bug Report
+about: Create a Report to help us Improve
 title: ''
 labels: bug
 assignees: ''
@@ -32,6 +32,3 @@ If applicable, add screenshots to help explain your problem.
 **Python Related details:**
 
 - Version [e.g. 3.9.1]
-
-**Additional context**
-Add any other context about the problem here.

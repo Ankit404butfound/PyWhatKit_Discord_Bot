@@ -1,56 +1,41 @@
+try:
+    from dotenv import load_dotenv
+
+    print("Found a .env file, loading environment variables from it!")
+    load_dotenv()
+except ModuleNotFoundError:
+    pass
+
 import os
-import discord
-from discord.ext import commands
-from google.cloud import bigquery
-import psycopg2
+from typing import NamedTuple
+
+__all__ = ["Channels", "Client", "Roles"]
 
 
-token = os.environ["TOKEN"]
-intents = discord.Intents.all()
-intents.members = True
+class Channels(NamedTuple):
+    """ID's for the channels"""
 
-bot = discord.Client(intents=intents)
-
-
-file = open("config.json","w")
-file.write(os.environ.get("CONFIG_JSON"))
-file.close()
+    welcome = 830319475387531296
+    introduce = 830319507360186389
+    rules = 830332694231384074
+    announcements = 830340707951968267
 
 
-allowed_roles = ["Contributors"]
-drunk_list = ['Yes','No','Maybe','Nah','Yea','Are you serious','I dont want to hear this','What! LoL',
-                           'Am i dumb','bluh bluh','Are you mad','God!','Am i drunk','Are you drunk','I doubt','Smells nothing',
-                           'Who cares','Its mean','Cool but no','Is it true','Its hard','Going to sereach','Felt dumb','Oh! no',
-                           'blah blah','let my soul on rest']
-    
-sad_words = ["sad", "depressed", "unhappy", "angry","miserable","die","kill","crying","waste","not working"]
+class Client(NamedTuple):
+    """Details for the Bot"""
 
-starter_encouragements = [  "Cheer up!",  "Hang in there.",  "You are a great person / bot!", "Don’t give up","Keep pushing",
-                                "Keep fighting!","Stay strong Never give up" "Never say!", "Come on! You can do it!","Believe in yourself"]
+    name = "PyWhatKit"
+    guild = int(os.environ.get("GUILD_ID", 830315801629949954))
+    prefix = os.environ.get("PREFIX", "!")
+    token = os.environ.get("TOKEN")
+    bot_repo = "https://github.com/Ankit404butfound/PyWhatKit_Discord_Bot"
+    wiki = "https://github.com/Ankit404butfound/PyWhatKit/wiki"
+    module_repo = "https://github.com/Ankit404butfound/PyWhatKit"
 
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "config.json"
-client = bigquery.Client()
+class Roles(NamedTuple):
+    """Role ID's"""
 
-conn = psycopg2.connect(os.environ.get("DATABASE_URL"))
-cur = conn.cursor()
-
-query = """
-   SELECT count(*) as Downloads
-FROM `bigquery-public-data.pypi.file_downloads`
-WHERE file.project = 'pywhatkit'
-  -- Only query the last 30 days of history
-  AND DATE(timestamp)
-    BETWEEN DATE_SUB(CURRENT_DATE(), INTERVAL 0 DAY)
-    AND CURRENT_DATE()
-"""
-
-query_1 = """
-   SELECT count(*) as Downloads
-FROM `bigquery-public-data.pypi.file_downloads`
-WHERE file.project = 'pywhatkit'
-  -- Only query the last 30 days of history
-  AND DATE(timestamp)
-    BETWEEN DATE_SUB(CURRENT_DATE(), INTERVAL 1 DAY)
-    AND CURRENT_DATE()
-"""
+    announcements = 866624699432435712
+    banned = 866624846087979049
+    video = 866628190604623902

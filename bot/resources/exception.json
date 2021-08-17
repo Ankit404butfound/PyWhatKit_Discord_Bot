@@ -1,0 +1,22 @@
+{
+  "CountryCodeException": {
+    "topic": "CountryCodeException",
+    "description": "Raised when the Phone Number doesn't contain the Country Code",
+    "fix": "Make sure to include the Country Code with the phone number"
+  },
+  "CallTimeException": {
+    "topic": "CallTimeException",
+    "description": "Raised when the time left to send the Message is less than the Wait Time",
+    "fix": "Increase the Wait Time or the Time at which the Message has to be sent"
+  },
+  "InternetException": {
+    "topic": "InternetException",
+    "description": "Raised when the Host Machine is not Connected to the Internet or the Internet is too Slow",
+    "fix": "Get a Fast Internet Connection 👀"
+  },
+  "UnsupportedEmailProvider": {
+    "topic": "UnsupportedEmailProvider",
+    "description": "Raised when the Email provider is not supported by the Library",
+    "fix": "Edit the mail.py file to include the domain name and the SMTP hostname for the provider in the hostname dictionary"
+  }
+}

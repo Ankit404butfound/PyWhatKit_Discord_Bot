@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+"discord.py" = "*"
+google-cloud-bigquery = "*"
+psycopg2-binary = "*"
+requests = "*"
+beautifulsoup4 = "*"
+
+[dev-packages]
+python-dotenv = "*"
+pre-commit = "*"
+autopep8 = "*"
+
+[requires]
+python_version = "3.9"
+
+[scripts]
+lint = "pre-commit run --all-files"
+precommit = "pre-commit install"
