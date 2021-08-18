@@ -177,7 +177,7 @@ class Moderation(commands.Cog):
         """
 
         await member.kick(reason=" ".join(reason))
-        await ctx.message.delete()
+        #await ctx.message.delete()
         reason = [x for x in reason]
         await ctx.send(embed=discord.Embed(title=f"Kicked {member.display_name}",
                                            description=f"Kicked by {ctx.author} for {' '.join(reason)}" if reason else f"Kicked by {ctx.author}",
