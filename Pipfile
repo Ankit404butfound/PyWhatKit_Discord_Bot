@@ -16,7 +16,7 @@ pre-commit = "*"
 autopep8 = "*"
 
 [requires]
-python_version = "3.7.1"
+python_version = "3.9"
 
 [scripts]
 lint = "pre-commit run --all-files"
