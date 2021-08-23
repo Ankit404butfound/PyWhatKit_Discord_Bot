@@ -18,7 +18,7 @@ class Channels(NamedTuple):
     welcome = 830319475387531296
     introduce = 830319507360186389
     rules = 830332694231384074
-    announcements = 830340707951968267
+    announcements = 830319507360186389#830340707951968267
 
 
 class Client(NamedTuple):
