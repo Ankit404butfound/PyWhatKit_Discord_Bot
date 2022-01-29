@@ -69,17 +69,23 @@ class Moderation(commands.Cog):
 
     @commands.command(name="ban")
     @commands.has_any_role("Mod Level 2")
-    async def ban(self, ctx: commands.Context, member: discord.Member, *reason: str) -> None:
+    async def ban(
+        self, ctx: commands.Context, member: discord.Member, *reason: str
+    ) -> None:
         """
         Permanently Ban a Member
         """
 
         reason = [x for x in reason]
-        await member.ban(reason=' '.join(reason))
+        await member.ban(reason=" ".join(reason))
         await ctx.message.delete()
-        await ctx.send(embed=discord.Embed(title=f"Banned {member.display_name}",
-                                           description=f"Banned by {ctx.author} for {' '.join(reason)}",
-                                           colour=discord.Color.random()))
+        await ctx.send(
+            embed=discord.Embed(
+                title=f"Banned {member.display_name}",
+                description=f"Banned by {ctx.author} for {' '.join(reason)}",
+                colour=discord.Color.random(),
+            )
+        )
 
     @commands.command(name="unban")
     @commands.has_any_role("Mod Level 2")
@@ -91,9 +97,13 @@ class Moderation(commands.Cog):
         user = await self.bot.fetch_user(id)
         await ctx.guild.unban(user)
         await ctx.message.delete()
-        await ctx.send(embed=discord.Embed(title=f"Unban {user.display_name}",
-                                           description=f"{ctx.author} has removed the Ban",
-                                           colour=discord.Color.random()))
+        await ctx.send(
+            embed=discord.Embed(
+                title=f"Unban {user.display_name}",
+                description=f"{ctx.author} has removed the Ban",
+                colour=discord.Color.random(),
+            )
+        )
 
     # TODO: Improve the Message Format
     @commands.command(name="listbans")
@@ -108,24 +118,35 @@ class Moderation(commands.Cog):
         banned = [str(x) for x in bans]
 
         if banned:
-            await ctx.send(embed=discord.Embed(title="Banned Users",
-                                               description=" ".join(banned),
-                                               colour=discord.Color.random()))
+            await ctx.send(
+                embed=discord.Embed(
+                    title="Banned Users",
+                    description=" ".join(banned),
+                    colour=discord.Color.random(),
+                )
+            )
         else:
-            await ctx.send(embed=discord.Embed(title="Banned Users",
-                                               description="No Banned Users",
-                                               colour=discord.Color.random()))
+            await ctx.send(
+                embed=discord.Embed(
+                    title="Banned Users",
+                    description="No Banned Users",
+                    colour=discord.Color.random(),
+                )
+            )
 
     @commands.command(name="warn")
     @commands.has_any_role("Mod Level 1")
-    async def warn(self, ctx: commands.Context, member: discord.Member, *reason: str) -> None:
+    async def warn(
+        self, ctx: commands.Context, member: discord.Member, *reason: str
+    ) -> None:
         """
         Warn a Member for Violation of Rules
         """
 
         member_id = member.id
         num_of_warns = execute(
-            f"SELECT num_of_warnings FROM flagged_user WHERE user_id={member_id}")
+            f"SELECT num_of_warnings FROM flagged_user WHERE user_id={member_id}"
+        )
         num_of_warns = 0 if not num_of_warns else num_of_warns[0][0]
         message = [x for x in reason]
 
@@ -136,28 +157,42 @@ class Moderation(commands.Cog):
             warn_message = f"Last warning for {member.display_name}"
 
         elif num_of_warns >= 3:
-            await member.ban(reason=' '.join(message))
-            await ctx.send(embed=discord.Embed(title=f"{member.display_name} has been banned",
-                                               description=f"Warned multiple times by {ctx.author} for {' '.join(message) if message else 'unknown reason'}",
-                                               colour=discord.Color.random()))
+            await member.ban(reason=" ".join(message))
+            await ctx.send(
+                embed=discord.Embed(
+                    title=f"{member.display_name} has been banned",
+                    description=f"Warned multiple times by {ctx.author} for {' '.join(message) if message else 'unknown reason'}",
+                    colour=discord.Color.random(),
+                )
+            )
             execute(f"DELETE FROM flagged_user WHERE user_id={member_id}", "w")
             return
 
         if message:
-            await ctx.send(embed=discord.Embed(title=warn_message,
-                                               description=f"Warned by {ctx.author} for {' '.join(message)}",
-                                               colour=discord.Color.random()))
+            await ctx.send(
+                embed=discord.Embed(
+                    title=warn_message,
+                    description=f"Warned by {ctx.author} for {' '.join(message)}",
+                    colour=discord.Color.random(),
+                )
+            )
         else:
-            await ctx.send(embed=discord.Embed(title=warn_message,
-                                               description=f"Warned by {ctx.author}",
-                                               colour=discord.Color.random()))
+            await ctx.send(
+                embed=discord.Embed(
+                    title=warn_message,
+                    description=f"Warned by {ctx.author}",
+                    colour=discord.Color.random(),
+                )
+            )
 
         if num_of_warns == 0:
             if execute(f"INSERT INTO flagged_user VALUES ({member_id}, 1)", "w"):
                 print("INSERTED")
         else:
             execute(
-                f"UPDATE flagged_user SET num_of_warnings={num_of_warns+1} WHERE user_id={member_id}", "w")
+                f"UPDATE flagged_user SET num_of_warnings={num_of_warns+1} WHERE user_id={member_id}",
+                "w",
+            )
 
     @commands.command(name="clear")
     @commands.has_any_role("Mod Level 1")
@@ -171,21 +206,31 @@ class Moderation(commands.Cog):
 
     @commands.command(name="kick")
     @commands.has_any_role("Mod Level 1")
-    async def kick(self, ctx: commands.Context, member: discord.Member, *reason: str) -> None:
+    async def kick(
+        self, ctx: commands.Context, member: discord.Member, *reason: str
+    ) -> None:
         """
         Remove a Member
         """
 
         await member.kick(reason=" ".join(reason))
-        #await ctx.message.delete()
+        # await ctx.message.delete()
         reason = [x for x in reason]
-        await ctx.send(embed=discord.Embed(title=f"Kicked {member.display_name}",
-                                           description=f"Kicked by {ctx.author} for {' '.join(reason)}" if reason else f"Kicked by {ctx.author}",
-                                           colour=discord.Color.random()))
+        await ctx.send(
+            embed=discord.Embed(
+                title=f"Kicked {member.display_name}",
+                description=f"Kicked by {ctx.author} for {' '.join(reason)}"
+                if reason
+                else f"Kicked by {ctx.author}",
+                colour=discord.Color.random(),
+            )
+        )
 
     @commands.command(name="tempban")
     @commands.has_any_role("Mod Level 1")
-    async def tempban(self, ctx: commands.Context, member: discord.Member, *reason: str) -> None:
+    async def tempban(
+        self, ctx: commands.Context, member: discord.Member, *reason: str
+    ) -> None:
         """
         Temporarily Ban a Member
         """
@@ -197,15 +242,23 @@ class Moderation(commands.Cog):
             return
 
         reason = [x for x in reason]
-        await member.add_roles(discord.Object(constants.Roles.banned), reason=' '.join(reason))
+        await member.add_roles(
+            discord.Object(constants.Roles.banned), reason=" ".join(reason)
+        )
 
-        await ctx.send(embed=discord.Embed(title="Temporary Ban",
-                                           description=f"{ctx.author} has applied Temporary Ban to {member.mention} for {' '.join(reason)}",
-                                           colour=discord.Color.random()))
+        await ctx.send(
+            embed=discord.Embed(
+                title="Temporary Ban",
+                description=f"{ctx.author} has applied Temporary Ban to {member.mention} for {' '.join(reason)}",
+                colour=discord.Color.random(),
+            )
+        )
 
     @commands.command(name="removetempban")
     @commands.has_any_role("Mod Level 1")
-    async def remove_temp_ban(self, ctx: commands.Context, member: discord.Member) -> None:
+    async def remove_temp_ban(
+        self, ctx: commands.Context, member: discord.Member
+    ) -> None:
         """
         Remove the Temporary Ban from a Member
         """
@@ -213,30 +266,39 @@ class Moderation(commands.Cog):
         has_role = check_member_role(member, constants.Roles.banned)
         await ctx.message.delete()
         if has_role:
-            await member.remove_roles(discord.Object(constants.Roles.banned), reason="Temporary Ban Removed")
+            await member.remove_roles(
+                discord.Object(constants.Roles.banned), reason="Temporary Ban Removed"
+            )
 
-            await ctx.send(embed=discord.Embed(title="Temporary Ban Removed",
-                                               description=f"{ctx.author} has removed the Temporary Ban from {member.mention}!",
-                                               colour=discord.Color.random()))
+            await ctx.send(
+                embed=discord.Embed(
+                    title="Temporary Ban Removed",
+                    description=f"{ctx.author} has removed the Temporary Ban from {member.mention}!",
+                    colour=discord.Color.random(),
+                )
+            )
             return
 
         await ctx.send(f"{member.mention} is not under Temporary Ban!")
 
     @commands.command(name="stream")
     @commands.has_any_role("Mod Level 1")
-    async def stream(self, ctx: commands.Context, member: discord.Member, reason: str) -> None:
+    async def stream(
+        self, ctx: commands.Context, member: discord.Member, reason: str
+    ) -> None:
         """
         Give Streaming Permission
         """
 
-        has_role = check_member_role(
-            member=member, role_id=constants.Roles.video)
+        has_role = check_member_role(member=member, role_id=constants.Roles.video)
         if has_role:
             await ctx.send(f"{member.mention} already has Streaming Permission!")
             return
 
         await member.add_roles(discord.Object(constants.Roles.video), reason=reason)
-        await ctx.send(f"{ctx.author.mention} gave Streaming Permission to {member.mention}")
+        await ctx.send(
+            f"{ctx.author.mention} gave Streaming Permission to {member.mention}"
+        )
 
     @commands.command(name="removestream")
     @commands.has_any_role("Mod Level 1")
@@ -245,11 +307,15 @@ class Moderation(commands.Cog):
         Remove Streaming Permission
         """
 
-        has_role = check_member_role(
-            member=member, role_id=constants.Roles.video)
+        has_role = check_member_role(member=member, role_id=constants.Roles.video)
         if has_role:
-            await member.remove_roles(discord.Object(constants.Roles.video), reason="Remove Streaming Permission")
-            await ctx.send(f"{ctx.author.mention} has removed Streaming Permission from {member.mention}")
+            await member.remove_roles(
+                discord.Object(constants.Roles.video),
+                reason="Remove Streaming Permission",
+            )
+            await ctx.send(
+                f"{ctx.author.mention} has removed Streaming Permission from {member.mention}"
+            )
             return
 
         await ctx.send(f"{member.mention} doesn't have Streaming Permission")

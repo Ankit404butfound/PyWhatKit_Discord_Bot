@@ -8,23 +8,23 @@ CONN = psycopg2.connect(os.environ.get("DATABASE_URL"))
 CUR = CONN.cursor()
 
 MATCHING = {
-    "ASCII Art":                  ("ascii", "ascii art", "art"),
-    "Text to Handwriting":        ("ascii", "ascii" "art", "art"),
-    "Shutdown":                   ("shutdown",),
-    "Cancel Shutdown":            ("Cancel Shutdown",),
-    "Send Mail":                  ("mail", "send mail"),
-    "Send HTML Mail":             ("send hmail", "html mail"),
-    "Info":                       ("info", "wikipedia"),
-    "Play on YT":                 ("playonyt", "youtube", "search on yt"),
-    "Search Google":              ("google", "search"),
-    "Show History":               ("history",),
-    "Take Screenshot":            ("screenshot", "take screenshot"),
-    "Open Web":                   ("open web", "web"),
-    "Close Tab":                  ("close tab",),
-    "Send WhatsApp Message":      ("sendwhatmsg", "send message"),
-    "Sending Message Instantly":  ("sendwhatmsg_instantly", "send message instantly"),
+    "ASCII Art": ("ascii", "ascii art", "art"),
+    "Text to Handwriting": ("ascii", "ascii" "art", "art"),
+    "Shutdown": ("shutdown",),
+    "Cancel Shutdown": ("Cancel Shutdown",),
+    "Send Mail": ("mail", "send mail"),
+    "Send HTML Mail": ("send hmail", "html mail"),
+    "Info": ("info", "wikipedia"),
+    "Play on YT": ("playonyt", "youtube", "search on yt"),
+    "Search Google": ("google", "search"),
+    "Show History": ("history",),
+    "Take Screenshot": ("screenshot", "take screenshot"),
+    "Open Web": ("open web", "web"),
+    "Close Tab": ("close tab",),
+    "Send WhatsApp Message": ("sendwhatmsg", "send message"),
+    "Sending Message Instantly": ("sendwhatmsg_instantly", "send message instantly"),
     "Sending Message to a Group": ("sendwhatmsg_to_group", "group message"),
-    "Sending WhatsApp Media":     ("sendwhats_image", "send image", "send media"),
+    "Sending WhatsApp Media": ("sendwhats_image", "send image", "send media"),
 }
 
 
@@ -46,7 +46,7 @@ def execute(sql: str, mode: str = "r") -> Union[bool, list[tuple[Any, ...]], Non
 
 
 def match_string(string: str) -> Union[str, None]:
-    """Match the String with the Command """
+    """Match the String with the Command"""
     for k, v in MATCHING.items():
         if string.lower() in v:
             return k

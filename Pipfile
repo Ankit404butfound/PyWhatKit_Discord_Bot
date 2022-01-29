@@ -9,7 +9,8 @@ google-cloud-bigquery = "*"
 psycopg2-binary = "*"
 requests = "*"
 beautifulsoup4 = "*"
-
+Discord-Anti-Spam = "*"
+fuzzywuzzy = "*"
 [dev-packages]
 python-dotenv = "*"
 pre-commit = "*"
