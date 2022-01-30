@@ -14,8 +14,11 @@ class Bot(commands.Bot):
     """
 
     def __init__(self) -> None:
-        super().__init__(command_prefix=constants.Client.prefix,
-                         description="Online", intents=discord.Intents.all())
+        super().__init__(
+            command_prefix=constants.Client.prefix,
+            description="Online",
+            intents=discord.Intents.all(),
+        )
 
     async def on_ready(self) -> None:
         """Using self.wait_until_ready() to wait for the Guild to be Available"""
@@ -30,7 +33,8 @@ class Bot(commands.Bot):
         await self.get_channel(constants.Channels.welcome).send(
             f"Hello {member.mention}, thanks for joining the server\n"
             f"Be sure to follow the <#{constants.Channels.rules}> of this server\n"
-            f"Consider introducing yourself in <#{constants.Channels.announcements}>")
+            f"Consider introducing yourself in <#{constants.Channels.announcements}>"
+        )
 
     def add_cog(self, cog: commands.Cog) -> None:
         """Adds a Cog"""

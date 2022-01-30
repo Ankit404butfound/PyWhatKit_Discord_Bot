@@ -45,12 +45,9 @@ class Docs(commands.Cog):
 
         topic, descp, argums, returs, link = data
         embed = discord.Embed(title=topic, color=discord.Color.random())
-        embed.add_field(name="Description",
-                        value=f"```\n{descp}```", inline=False)
-        embed.add_field(name="Arguments",
-                        value=f"```python\n{argums}```", inline=False)
-        embed.add_field(
-            name="Returns", value=f"```python\n{returs}```", inline=False)
+        embed.add_field(name="Description", value=f"```\n{descp}```", inline=False)
+        embed.add_field(name="Arguments", value=f"```python\n{argums}```", inline=False)
+        embed.add_field(name="Returns", value=f"```python\n{returs}```", inline=False)
         embed.add_field(name="Link", value=link, inline=False)
         await ctx.send(ctx.author.mention, embed=embed)
 
@@ -68,7 +65,8 @@ class Docs(commands.Cog):
         embed = discord.Embed(title=data[0], color=discord.Color.random())
         for info in data[1]:
             embed.add_field(
-                name=info[1], value=f"```python\n{info[0]}```", inline=False)
+                name=info[1], value=f"```python\n{info[0]}```", inline=False
+            )
         await ctx.send(ctx.author.mention, embed=embed)
 
     @commands.command(name="exception")
@@ -83,8 +81,7 @@ class Docs(commands.Cog):
             return await ctx.send(f"{ctx.author.mention} No Results Found!")
 
         embed = discord.Embed(title=data[0], color=discord.Color.random())
-        embed.add_field(name="Description",
-                        value=f"`{data[1]}`", inline=False)
+        embed.add_field(name="Description", value=f"`{data[1]}`", inline=False)
         embed.add_field(name="Fix", value=f"`{data[2]}`", inline=False)
         await ctx.send(ctx.author.mention, embed=embed)
 
@@ -96,21 +93,33 @@ class Docs(commands.Cog):
         """
 
         if "function" in topic.lower():
-            functions = "\n".join(f":rocket: {i[0]}" for i in db_parser.execute(
-                "SELECT topic FROM command"))
+            functions = "\n".join(
+                f":rocket: {i[0]}"
+                for i in db_parser.execute("SELECT topic FROM command")
+            )
             embed = discord.Embed(
-                title="Available searches", description=functions, color=discord.Color.random())
+                title="Available searches",
+                description=functions,
+                color=discord.Color.random(),
+            )
             await ctx.send(ctx.author.mention, embed=embed)
 
         elif "exception" in topic.lower():
-            exceptions = "\n".join(f":rocket: {i[0]}" for i in db_parser.execute(
-                "SELECT topic FROM exception"))
+            exceptions = "\n".join(
+                f":rocket: {i[0]}"
+                for i in db_parser.execute("SELECT topic FROM exception")
+            )
             embed = discord.Embed(
-                title="Available searches", description=exceptions, color=discord.Color.random())
+                title="Available searches",
+                description=exceptions,
+                color=discord.Color.random(),
+            )
             await ctx.send(ctx.author.mention, embed=embed)
 
         else:
-            return await ctx.send(f"{ctx.author.mention} Please enter a Valid Value (function, exception)!")
+            return await ctx.send(
+                f"{ctx.author.mention} Please enter a Valid Value (function, exception)!"
+            )
 
 
 def setup(bot: commands.Bot) -> None:

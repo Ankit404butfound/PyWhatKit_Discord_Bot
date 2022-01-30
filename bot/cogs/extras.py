@@ -36,9 +36,14 @@ class Extras(commands.Cog):
             await ctx.send(f"{ctx.author.mention} You're already Subscribed!")
             return
 
-        await ctx.author.add_roles(discord.Object(constants.Roles.announcements), reason="Subscribed to announcements")
+        await ctx.author.add_roles(
+            discord.Object(constants.Roles.announcements),
+            reason="Subscribed to announcements",
+        )
 
-        await ctx.send(f"{ctx.author.mention} Subscribed to <#{constants.Channels.announcements}>")
+        await ctx.send(
+            f"{ctx.author.mention} Subscribed to <#{constants.Channels.announcements}>"
+        )
 
     @commands.command(name="unsubscribe")
     @commands.cooldown(1, 15, commands.BucketType.user)
@@ -50,12 +55,18 @@ class Extras(commands.Cog):
         has_role = check_self_role(ctx, constants.Roles.announcements)
 
         if has_role:
-            await ctx.author.remove_roles(discord.Object(constants.Roles.announcements), reason="Unsubscribe to "
-                                                                                                "announcements")
-            await ctx.send(f"{ctx.author.mention} Unsubscribed to <#{constants.Channels.announcements}>")
+            await ctx.author.remove_roles(
+                discord.Object(constants.Roles.announcements),
+                reason="Unsubscribe to " "announcements",
+            )
+            await ctx.send(
+                f"{ctx.author.mention} Unsubscribed to <#{constants.Channels.announcements}>"
+            )
             return
 
-        await ctx.send(f"{ctx.author.mention} You're not Subscribed to <#{constants.Channels.announcements}>")
+        await ctx.send(
+            f"{ctx.author.mention} You're not Subscribed to <#{constants.Channels.announcements}>"
+        )
 
     @commands.command(name="prefix")
     @commands.cooldown(1, 15, commands.BucketType.user)
@@ -64,7 +75,9 @@ class Extras(commands.Cog):
         Get the Bot Prefix
         """
 
-        await ctx.send(f"{ctx.author.mention} the Bot Prefix is {self.bot.command_prefix}")
+        await ctx.send(
+            f"{ctx.author.mention} the Bot Prefix is {self.bot.command_prefix}"
+        )
 
 
 def setup(bot: commands.Bot) -> None:
